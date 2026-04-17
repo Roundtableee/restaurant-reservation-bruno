@@ -1,0 +1,30 @@
+info:
+  name: TC083 - Update Restaurant Info - Invalid Restaurant Phone Length
+  type: http
+  seq: 7
+  tags:
+  - restaurant
+  - tc083
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"02123\",\n  \"email\": \"\
+      {{restaurantEmail}}\",\n  \"operatingTimeStart\": \"10:00\",\n  \"operatingTimeEnd\"\
+      : \"22:00\",\n  \"address\": \"{{restaurantAddress}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      restaurant phone length must be between 10 and 15\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

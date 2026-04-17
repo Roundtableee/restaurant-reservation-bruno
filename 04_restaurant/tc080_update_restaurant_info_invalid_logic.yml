@@ -1,0 +1,31 @@
+info:
+  name: TC080 - Update Restaurant Info - Invalid Logic
+  type: http
+  seq: 4
+  tags:
+  - restaurant
+  - tc080
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"{{restaurantPhone}}\",\n\
+      \  \"email\": \"{{restaurantEmail}}\",\n  \"operatingTimeStart\": \"22:00\"\
+      ,\n  \"operatingTimeEnd\": \"10:00\",\n  \"address\": \"{{restaurantAddress}}\"\
+      \n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      operatingTimeStart is after operatingTimeEnd\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

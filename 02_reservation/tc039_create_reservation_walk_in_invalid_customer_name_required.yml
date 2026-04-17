@@ -1,0 +1,30 @@
+info:
+  name: TC039 - Create Reservation - Walk-In Invalid Customer Name Required
+  type: http
+  seq: 20
+  tags:
+  - reservation
+  - tc039
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{walkInDate}}\",\n  \"Timeslot\": \"{{walkInMainTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 4,\n  \"SpecialRequest\": \"Near counter\",\n  \"TableId\"\
+      : \"{{walkInTableId}}\",\n  \"Phone\": \"{{walkInPhone}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{staffToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      customer name must be provided\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

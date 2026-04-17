@@ -1,0 +1,28 @@
+info:
+  name: TC001 - Register - Valid
+  type: http
+  seq: 1
+  tags:
+  - auth
+  - tc001
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/register'
+  body:
+    type: json
+    data: "{\n  \"fullName\": \"{{customerFullName}}\",\n  \"password\": \"HelloWorld123\"\
+      ,\n  \"email\": \"{{customerEmail}}\",\n  \"phone\": \"{{customerPhone}}\"\n\
+      }"
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      user created\");\n});\ntest(\"userId exists\", function() {\n  expect(res.body.userId).to.exist;\n\
+      });"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

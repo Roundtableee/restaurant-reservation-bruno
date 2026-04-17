@@ -1,0 +1,31 @@
+info:
+  name: TC078 - Update Restaurant Info - Valid Admin
+  type: http
+  seq: 2
+  tags:
+  - restaurant
+  - tc078
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"{{restaurantPhone}}\",\n\
+      \  \"email\": \"{{restaurantEmail}}\",\n  \"operatingTimeStart\": \"10:00\"\
+      ,\n  \"operatingTimeEnd\": \"22:00\",\n  \"address\": \"{{restaurantAddress}}\"\
+      \n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      update restaurant info successful\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

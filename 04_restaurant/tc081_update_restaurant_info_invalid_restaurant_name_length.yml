@@ -1,0 +1,31 @@
+info:
+  name: TC081 - Update Restaurant Info - Invalid Restaurant Name Length
+  type: http
+  seq: 5
+  tags:
+  - restaurant
+  - tc081
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"REALLY REALLY REALLY LONG NAME_\",\n  \"phone\": \"{{restaurantPhone}}\"\
+      ,\n  \"email\": \"{{restaurantEmail}}\",\n  \"operatingTimeStart\": \"10:00\"\
+      ,\n  \"operatingTimeEnd\": \"22:00\",\n  \"address\": \"{{restaurantAddress}}\"\
+      \n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      restaurant name length must be between 1 to 30\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

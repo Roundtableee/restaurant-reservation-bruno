@@ -1,0 +1,28 @@
+info:
+  name: TC017 - Change Role - Invalid Forbidden Non-Admin
+  type: http
+  seq: 17
+  tags:
+  - auth
+  - tc017
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/role'
+  body:
+    type: json
+    data: "{\n  \"email\": \"{{staffCandidateEmail}}\",\n  \"role\": \"staff\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      forbidden\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

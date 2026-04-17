@@ -1,0 +1,22 @@
+info:
+  name: TC057 - Get Tables - Invalid Number Of Guests Out Of Range
+  type: http
+  seq: 3
+  tags:
+  - table
+  - tc057
+http:
+  method: GET
+  url: '{{baseUrl}}/tables?date={{futureDate2}}&timeslotStart=18:00&timeslotEnd=20:00&status=Available&numberOfGuests=11'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      number of guests must be between 1 to 10\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

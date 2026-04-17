@@ -1,0 +1,25 @@
+info:
+  name: TC050 - Delete Reservation - Valid Customer Own Future Reservation
+  type: http
+  seq: 31
+  tags:
+  - reservation
+  - tc050
+http:
+  method: DELETE
+  url: '{{baseUrl}}/reservation/{{deletableCustomerReservationId}}'
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 204\", function() {\n  expect(res.status).to.equal(204);\n\
+      });\ntest(\"body status is 204\", function() {\n  expect(res.body.status).to.equal(204);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      delete reservation successful\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,26 @@
+info:
+  name: TC005 - Register - Invalid Phone Characters
+  type: http
+  seq: 5
+  tags:
+  - auth
+  - tc005
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/register'
+  body:
+    type: json
+    data: "{\n  \"fullName\": \"{{customerFullName}}\",\n  \"password\": \"HelloWorld123\"\
+      ,\n  \"email\": \"{{customerEmail}}\",\n  \"phone\": \"09090A0909\"\n}"
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      phone can only contain numbers\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

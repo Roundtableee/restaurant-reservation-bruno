@@ -1,0 +1,31 @@
+info:
+  name: TC066 - Update Table - Valid Staff Status Only
+  type: http
+  seq: 12
+  tags:
+  - table
+  - tc066
+http:
+  method: PUT
+  url: '{{baseUrl}}/table/{{manageTableId}}'
+  body:
+    type: json
+    data: "{\n  \"tableId\": \"{{manageTableId}}\",\n  \"status\": \"Occupied\"\n}"
+  auth:
+    type: bearer
+    token: '{{staffToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      update table successful\");\n});\ntest(\"tableId exists\", function() {\n  expect(res.body.tableId).to.exist;\n\
+      });\ntest(\"capacity matches\", function() {\n  expect(res.body.capacity).to.equal(4);\n\
+      });\ntest(\"tableStatus matches\", function() {\n  expect(res.body.tableStatus).to.equal(\"\
+      Occupied\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

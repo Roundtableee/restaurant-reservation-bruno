@@ -1,0 +1,36 @@
+info:
+  name: TC086 - Update Restaurant Operating Hours - Partially Overlapping Reservations
+    Are Adjusted
+  type: http
+  seq: 10
+  tags:
+  - restaurant
+  - tc086
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"{{restaurantPhone}}\",\n\
+      \  \"email\": \"{{restaurantEmail}}\",\n  \"operatingTimeStart\": \"09:30\"\
+      ,\n  \"operatingTimeEnd\": \"19:30\",\n  \"address\": \"{{restaurantAddress}}\"\
+      \n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      update restaurant info successful\");\n});\ntest(\"note\", function() {\n  bru.setVar(\"\
+      lastTestNote\", \"valid  Post-condition: - future reservations partially overlapping\
+      \ the new operating hours have their timeslot adjusted to match the new range\
+      \ - affected customer/staff accounts are notified\");\n  expect(true).to.equal(true);\n\
+      });"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

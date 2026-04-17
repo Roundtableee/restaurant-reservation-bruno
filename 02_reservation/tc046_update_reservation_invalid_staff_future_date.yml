@@ -1,0 +1,31 @@
+info:
+  name: TC046 - Update Reservation - Invalid Staff Future Date
+  type: http
+  seq: 27
+  tags:
+  - reservation
+  - tc046
+http:
+  method: PUT
+  url: '{{baseUrl}}/reservation/{{walkInReservationId}}'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{futureDate2}}\",\n  \"Timeslot\": \"{{updateTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 5,\n  \"SpecialRequest\": \"Birthday setup\",\n  \"\
+      TableId\": \"{{walkInTableId}}\",\n  \"CustomerName\": \"Walk In Customer\"\n\
+      }"
+  auth:
+    type: bearer
+    token: '{{staffToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      staff can update walk-in only\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,26 @@
+info:
+  name: TC012 - Login - Invalid Temporary Block After Repeated Attempts
+  type: http
+  seq: 12
+  tags:
+  - auth
+  - tc012
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/login'
+  body:
+    type: json
+    data: "{\n  \"email\": \"{{customerEmail}}\",\n  \"password\": \"WrongPassword123\"\
+      \n}"
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 429\", function() {\n  expect(res.status).to.equal(429);\n\
+      });\ntest(\"body status is 429\", function() {\n  expect(res.body.status).to.equal(429);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      too many attempts, try again in 1 hour\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

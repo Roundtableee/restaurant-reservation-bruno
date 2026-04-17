@@ -1,0 +1,30 @@
+info:
+  name: TC035 - Create Reservation - Invalid Number Of Guests Non-Numeric
+  type: http
+  seq: 16
+  tags:
+  - reservation
+  - tc035
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{futureDate2}}\",\n  \"Timeslot\": \"{{futureTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": \"four\",\n  \"SpecialRequest\": \"Window seat\",\n\
+      \  \"TableId\": \"{{largeTableId}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      number of guests must be a number\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

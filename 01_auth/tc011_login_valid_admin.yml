@@ -1,0 +1,31 @@
+info:
+  name: TC011 - Login - Valid Admin
+  type: http
+  seq: 11
+  tags:
+  - auth
+  - tc011
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/login'
+  body:
+    type: json
+    data: "{\n  \"email\": \"{{adminEmail}}\",\n  \"password\": \"{{adminPassword}}\"\
+      \n}"
+runtime:
+  scripts:
+  - type: after-response
+    code: const token=res.body.token||res.body.accessToken||(res.body.data&&(res.body.data.token||res.body.data.accessToken));
+      if(token) bru.setVar("adminToken", token);
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      login successful\");\n});\ntest(\"token exists\", function() {\n  expect(res.body.token).to.exist;\n\
+      });\ntest(\"role matches\", function() {\n  expect(res.body.role).to.equal(\"\
+      Admin\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

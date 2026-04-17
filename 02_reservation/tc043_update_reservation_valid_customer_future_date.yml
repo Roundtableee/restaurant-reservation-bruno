@@ -1,0 +1,33 @@
+info:
+  name: TC043 - Update Reservation - Valid Customer Future Date
+  type: http
+  seq: 24
+  tags:
+  - reservation
+  - tc043
+http:
+  method: PUT
+  url: '{{baseUrl}}/reservation/{{customerReservationId}}'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{futureDate2}}\",\n  \"Timeslot\": \"{{updateTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 5,\n  \"SpecialRequest\": \"Birthday setup\",\n  \"\
+      TableId\": \"{{largeTableId}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 200\", function() {\n  expect(res.status).to.equal(200);\n\
+      });\ntest(\"body status is 200\", function() {\n  expect(res.body.status).to.equal(200);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      update reservation successful\");\n});\ntest(\"reservationId exists\", function()\
+      \ {\n  expect(res.body.reservationId).to.exist;\n});\ntest(\"reservationStatus\
+      \ matches\", function() {\n  expect(res.body.reservationStatus).to.equal(\"\
+      Confirmed\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

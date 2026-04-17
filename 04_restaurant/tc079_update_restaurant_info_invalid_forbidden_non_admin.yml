@@ -1,0 +1,31 @@
+info:
+  name: TC079 - Update Restaurant Info - Invalid Forbidden Non-Admin
+  type: http
+  seq: 3
+  tags:
+  - restaurant
+  - tc079
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"{{restaurantPhone}}\",\n\
+      \  \"email\": \"{{restaurantEmail}}\",\n  \"operatingTimeStart\": \"10:00\"\
+      ,\n  \"operatingTimeEnd\": \"22:00\",\n  \"address\": \"{{restaurantAddress}}\"\
+      \n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      forbidden\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

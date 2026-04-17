@@ -1,0 +1,31 @@
+info:
+  name: TC010 - Login - Valid Customer
+  type: http
+  seq: 10
+  tags:
+  - auth
+  - tc010
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/login'
+  body:
+    type: json
+    data: "{\n  \"email\": \"{{customerEmail}}\",\n  \"password\": \"{{customerPassword}}\"\
+      \n}"
+runtime:
+  scripts:
+  - type: after-response
+    code: const token=res.body.token||res.body.accessToken||(res.body.data&&(res.body.data.token||res.body.data.accessToken));
+      if(token) bru.setVar("customerToken", token);
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      login successful\");\n});\ntest(\"token exists\", function() {\n  expect(res.body.token).to.exist;\n\
+      });\ntest(\"role matches\", function() {\n  expect(res.body.role).to.equal(\"\
+      Customer\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

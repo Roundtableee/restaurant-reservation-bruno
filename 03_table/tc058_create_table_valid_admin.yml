@@ -1,0 +1,34 @@
+info:
+  name: TC058 - Create Table - Valid Admin
+  type: http
+  seq: 4
+  tags:
+  - table
+  - tc058
+http:
+  method: POST
+  url: '{{baseUrl}}/table'
+  body:
+    type: json
+    data: "{\n  \"TableCode\": \"{{tableCodeCreate}}\",\n  \"Capacity\": 5\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: after-response
+    code: const id=res.body.tableId||res.body.id||(res.body.data&&(res.body.data.tableId||res.body.data.id));
+      if(id) bru.setVar("tc058TableId", id);
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      create table successful\");\n});\ntest(\"tableId exists\", function() {\n  expect(res.body.tableId).to.exist;\n\
+      });\ntest(\"capacity matches\", function() {\n  expect(res.body.capacity).to.equal(5);\n\
+      });\ntest(\"tableStatus matches\", function() {\n  expect(res.body.tableStatus).to.equal(\"\
+      Available\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

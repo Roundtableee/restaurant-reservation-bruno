@@ -1,0 +1,28 @@
+info:
+  name: TC062 - Create Table - Invalid Missing Capacity
+  type: http
+  seq: 8
+  tags:
+  - table
+  - tc062
+http:
+  method: POST
+  url: '{{baseUrl}}/table'
+  body:
+    type: json
+    data: "{\n  \"TableCode\": \"T-07\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      capacity must be provided\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

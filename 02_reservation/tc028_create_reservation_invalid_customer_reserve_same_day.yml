@@ -1,0 +1,30 @@
+info:
+  name: TC028 - Create Reservation - Invalid Customer Reserve Same Day
+  type: http
+  seq: 9
+  tags:
+  - reservation
+  - tc028
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{walkInDate}}\",\n  \"Timeslot\": \"{{futureTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 4,\n  \"SpecialRequest\": \"Window seat\",\n  \"TableId\"\
+      : \"{{largeTableId}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      customer cannot reserve within the day\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

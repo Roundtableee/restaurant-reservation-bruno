@@ -1,0 +1,32 @@
+info:
+  name: TC016 - Change Role - Valid Admin
+  type: http
+  seq: 16
+  tags:
+  - auth
+  - tc016
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/role'
+  body:
+    type: json
+    data: "{\n  \"email\": \"{{staffCandidateEmail}}\",\n  \"role\": \"staff\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: after-response
+    code: if(res.status===201){ bru.setVar("staffRoleGranted","true"); }
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      successfully change user role\");\n});\ntest(\"email matches\", function() {\n\
+      \  expect(res.body.email).to.equal(\"staff01@example.com\");\n});\ntest(\"role\
+      \ matches\", function() {\n  expect(res.body.role).to.equal(\"staff\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

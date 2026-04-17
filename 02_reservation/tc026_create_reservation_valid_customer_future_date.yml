@@ -1,0 +1,36 @@
+info:
+  name: TC026 - Create Reservation - Valid Customer Future Date
+  type: http
+  seq: 7
+  tags:
+  - reservation
+  - tc026
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{futureDate2}}\",\n  \"Timeslot\": \"{{futureTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 4,\n  \"SpecialRequest\": \"Window seat\",\n  \"TableId\"\
+      : \"{{largeTableId}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: after-response
+    code: const id=res.body.reservationId||res.body.id||(res.body.data&&(res.body.data.reservationId||res.body.data.id));
+      if(id) bru.setVar("tc026ReservationId", id);
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      create reservation successful\");\n});\ntest(\"reservationId exists\", function()\
+      \ {\n  expect(res.body.reservationId).to.exist;\n});\ntest(\"reservationStatus\
+      \ matches\", function() {\n  expect(res.body.reservationStatus).to.equal(\"\
+      Confirmed\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

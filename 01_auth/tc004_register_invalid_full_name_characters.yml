@@ -1,0 +1,26 @@
+info:
+  name: TC004 - Register - Invalid Full Name Characters
+  type: http
+  seq: 4
+  tags:
+  - auth
+  - tc004
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/register'
+  body:
+    type: json
+    data: "{\n  \"fullName\": \"Parit123\",\n  \"password\": \"HelloWorld123\",\n\
+      \  \"email\": \"{{customerEmail}}\",\n  \"phone\": \"{{customerPhone}}\"\n}"
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      full name can only contain letters and spaces\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

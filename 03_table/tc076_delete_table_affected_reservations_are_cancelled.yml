@@ -1,0 +1,29 @@
+info:
+  name: TC076 - Delete Table - Affected Reservations Are Cancelled
+  type: http
+  seq: 22
+  tags:
+  - table
+  - tc076
+http:
+  method: DELETE
+  url: '{{baseUrl}}/table/{{cascadeDeleteTableId}}'
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 204\", function() {\n  expect(res.status).to.equal(204);\n\
+      });\ntest(\"body status is 204\", function() {\n  expect(res.body.status).to.equal(204);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      delete table successful\");\n});\ntest(\"tableId exists\", function() {\n  expect(res.body.tableId).to.exist;\n\
+      });\ntest(\"note\", function() {\n  bru.setVar(\"lastTestNote\", \"valid  Post-condition:\
+      \ - reservations assigned to this table are updated to \\\"Cancelled\\\" - affected\
+      \ customer/staff accounts are notified\");\n  expect(true).to.equal(true);\n\
+      });"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,30 @@
+info:
+  name: TC030 - Create Reservation - Invalid Table Not Available
+  type: http
+  seq: 11
+  tags:
+  - reservation
+  - tc030
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{futureDate}}\",\n  \"Timeslot\": \"{{setupReservationTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 4,\n  \"SpecialRequest\": \"Window seat\",\n  \"TableId\"\
+      : \"{{manageTableId}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 409\", function() {\n  expect(res.status).to.equal(409);\n\
+      });\ntest(\"body status is 409\", function() {\n  expect(res.body.status).to.equal(409);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      table not available\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

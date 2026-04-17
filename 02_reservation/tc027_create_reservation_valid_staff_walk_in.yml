@@ -1,0 +1,37 @@
+info:
+  name: TC027 - Create Reservation - Valid Staff Walk-In
+  type: http
+  seq: 8
+  tags:
+  - reservation
+  - tc027
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{walkInDate}}\",\n  \"Timeslot\": \"{{walkInMainTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 4,\n  \"SpecialRequest\": \"Near counter\",\n  \"TableId\"\
+      : \"{{walkInTableId}}\",\n  \"CustomerName\": \"Walk In Customer\",\n  \"Phone\"\
+      : \"{{walkInPhone}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{staffToken}}'
+runtime:
+  scripts:
+  - type: after-response
+    code: const id=res.body.reservationId||res.body.id||(res.body.data&&(res.body.data.reservationId||res.body.data.id));
+      if(id) bru.setVar("tc027WalkInReservationId", id);
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      create reservation successful\");\n});\ntest(\"reservationId exists\", function()\
+      \ {\n  expect(res.body.reservationId).to.exist;\n});\ntest(\"reservationStatus\
+      \ matches\", function() {\n  expect(res.body.reservationStatus).to.equal(\"\
+      Walk-in\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

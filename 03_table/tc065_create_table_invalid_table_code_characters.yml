@@ -1,0 +1,28 @@
+info:
+  name: TC065 - Create Table - Invalid Table Code Characters
+  type: http
+  seq: 11
+  tags:
+  - table
+  - tc065
+http:
+  method: POST
+  url: '{{baseUrl}}/table'
+  body:
+    type: json
+    data: "{\n  \"TableCode\": \"T-01\U0001F642\",\n  \"Capacity\": 5\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      table code can only contain alphanumeric and special characters\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

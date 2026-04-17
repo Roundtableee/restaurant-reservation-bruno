@@ -1,0 +1,25 @@
+info:
+  name: TC022 - Get All Reservations - Invalid Forbidden Customer
+  type: http
+  seq: 3
+  tags:
+  - reservation
+  - tc022
+http:
+  method: GET
+  url: '{{baseUrl}}/reservations'
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      forbidden\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

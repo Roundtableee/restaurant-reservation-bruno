@@ -1,0 +1,30 @@
+info:
+  name: TC084 - Update Restaurant Info - Invalid Restaurant Email
+  type: http
+  seq: 8
+  tags:
+  - restaurant
+  - tc084
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"{{restaurantPhone}}\",\n\
+      \  \"email\": \"invalid-email\",\n  \"operatingTimeStart\": \"10:00\",\n  \"\
+      operatingTimeEnd\": \"22:00\",\n  \"address\": \"{{restaurantAddress}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      restaurant email is invalid\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

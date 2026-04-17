@@ -1,0 +1,28 @@
+info:
+  name: TC069 - Update Table - Invalid Table Not Found
+  type: http
+  seq: 15
+  tags:
+  - table
+  - tc069
+http:
+  method: PUT
+  url: '{{baseUrl}}/table/{{fakeTableId}}'
+  body:
+    type: json
+    data: "{\n  \"tableId\": \"{{fakeTableId}}\",\n  \"status\": \"Occupied\"\n}"
+  auth:
+    type: bearer
+    token: '{{staffToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 404\", function() {\n  expect(res.status).to.equal(404);\n\
+      });\ntest(\"body status is 404\", function() {\n  expect(res.body.status).to.equal(404);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      table not found\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

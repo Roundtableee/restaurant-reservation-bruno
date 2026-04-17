@@ -1,0 +1,30 @@
+info:
+  name: TC082 - Update Restaurant Info - Invalid Restaurant Address Length
+  type: http
+  seq: 6
+  tags:
+  - restaurant
+  - tc082
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"{{restaurantPhone}}\",\n\
+      \  \"email\": \"{{restaurantEmail}}\",\n  \"operatingTimeStart\": \"10:00\"\
+      ,\n  \"operatingTimeEnd\": \"22:00\",\n  \"address\": \"A\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      restaurant address length must be between 3 to 200\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

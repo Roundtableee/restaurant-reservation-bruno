@@ -1,0 +1,31 @@
+info:
+  name: TC077 - Get Restaurant Info - Valid Public
+  type: http
+  seq: 1
+  tags:
+  - restaurant
+  - tc077
+http:
+  method: GET
+  url: '{{baseUrl}}/restaurant/info'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 200\", function() {\n  expect(res.status).to.equal(200);\n\
+      });\ntest(\"body status is 200\", function() {\n  expect(res.body.status).to.equal(200);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      get restaurant info successful\");\n});\ntest(\"data object exists\", function()\
+      \ {\n  expect(res.body.data).to.exist;\n});\ntest(\"data has name\", function()\
+      \ {\n  expect(res.body.data).to.have.property(\"name\");\n});\ntest(\"data has\
+      \ phone\", function() {\n  expect(res.body.data).to.have.property(\"phone\"\
+      );\n});\ntest(\"data has email\", function() {\n  expect(res.body.data).to.have.property(\"\
+      email\");\n});\ntest(\"data has operatingTimeStart\", function() {\n  expect(res.body.data).to.have.property(\"\
+      operatingTimeStart\");\n});\ntest(\"data has operatingTimeEnd\", function()\
+      \ {\n  expect(res.body.data).to.have.property(\"operatingTimeEnd\");\n});\n\
+      test(\"data has address\", function() {\n  expect(res.body.data).to.have.property(\"\
+      address\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

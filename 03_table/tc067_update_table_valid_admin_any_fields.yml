@@ -1,0 +1,32 @@
+info:
+  name: TC067 - Update Table - Valid Admin Any Fields
+  type: http
+  seq: 13
+  tags:
+  - table
+  - tc067
+http:
+  method: PUT
+  url: '{{baseUrl}}/table/{{manageTableId}}'
+  body:
+    type: json
+    data: "{\n  \"tableId\": \"{{manageTableId}}\",\n  \"TableCode\": \"T-99\",\n\
+      \  \"Capacity\": 6,\n  \"status\": \"Out of Service\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      update table successful\");\n});\ntest(\"tableId exists\", function() {\n  expect(res.body.tableId).to.exist;\n\
+      });\ntest(\"capacity matches\", function() {\n  expect(res.body.capacity).to.equal(6);\n\
+      });\ntest(\"tableStatus matches\", function() {\n  expect(res.body.tableStatus).to.equal(\"\
+      Out of Service\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

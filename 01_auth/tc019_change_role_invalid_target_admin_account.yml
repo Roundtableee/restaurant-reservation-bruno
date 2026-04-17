@@ -1,0 +1,28 @@
+info:
+  name: TC019 - Change Role - Invalid Target Admin Account
+  type: http
+  seq: 19
+  tags:
+  - auth
+  - tc019
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/role'
+  body:
+    type: json
+    data: "{\n  \"email\": \"{{adminEmail}}\",\n  \"role\": \"staff\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      admin role cannot be changed\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

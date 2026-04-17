@@ -1,0 +1,34 @@
+info:
+  name: TC023 - Get Reservation By ID - Valid Customer Own Reservation Only
+  type: http
+  seq: 4
+  tags:
+  - reservation
+  - tc023
+http:
+  method: GET
+  url: '{{baseUrl}}/reservation/{{customerReservationId}}'
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 200\", function() {\n  expect(res.status).to.equal(200);\n\
+      });\ntest(\"body status is 200\", function() {\n  expect(res.body.status).to.equal(200);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      get successful\");\n});\ntest(\"data object exists\", function() {\n  expect(res.body.data).to.exist;\n\
+      });\ntest(\"data has reservationId\", function() {\n  expect(res.body.data).to.have.property(\"\
+      reservationId\");\n});\ntest(\"data has customerName\", function() {\n  expect(res.body.data).to.have.property(\"\
+      customerName\");\n});\ntest(\"data has date\", function() {\n  expect(res.body.data).to.have.property(\"\
+      date\");\n});\ntest(\"data has timeslot\", function() {\n  expect(res.body.data).to.have.property(\"\
+      timeslot\");\n});\ntest(\"data has numberOfGuests\", function() {\n  expect(res.body.data).to.have.property(\"\
+      numberOfGuests\");\n});\ntest(\"data has specialRequest\", function() {\n  expect(res.body.data).to.have.property(\"\
+      specialRequest\");\n});\ntest(\"data has tableId\", function() {\n  expect(res.body.data).to.have.property(\"\
+      tableId\");\n});\ntest(\"data has status\", function() {\n  expect(res.body.data).to.have.property(\"\
+      status\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

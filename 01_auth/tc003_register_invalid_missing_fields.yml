@@ -1,0 +1,26 @@
+info:
+  name: TC003 - Register - Invalid Missing Fields
+  type: http
+  seq: 3
+  tags:
+  - auth
+  - tc003
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/register'
+  body:
+    type: json
+    data: "{\n  \"fullName\": \"\",\n  \"password\": \"HelloWorld123\",\n  \"email\"\
+      : \"{{customerEmail}}\"\n}"
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 401\", function() {\n  expect(res.status).to.equal(401);\n\
+      });\ntest(\"body status is 401\", function() {\n  expect(res.body.status).to.equal(401);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      bad request\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,13 @@
+vars:
+  baseUrl: http://localhost:3000/v1
+  adminEmail: admin@example.com
+  adminPassword: Admin123!
+  customerPassword: HelloWorld123
+  otherCustomerPassword: HelloWorld123
+  staffPassword: HelloWorld123
+  customerPhone: "0909090909"
+  otherCustomerPhone: "0911111111"
+  staffPhone: "0922222222"
+  restaurantPhone: "02-123-4567"
+  restaurantEmail: contact@restaurant.com
+  restaurantAddress: Bangkok

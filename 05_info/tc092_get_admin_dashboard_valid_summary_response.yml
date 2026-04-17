@@ -1,0 +1,32 @@
+info:
+  name: TC092 - Get Admin Dashboard - Valid Summary Response
+  type: http
+  seq: 6
+  tags:
+  - info
+  - tc092
+http:
+  method: GET
+  url: '{{baseUrl}}/admin/dashboard'
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 200\", function() {\n  expect(res.status).to.equal(200);\n\
+      });\ntest(\"body status is 200\", function() {\n  expect(res.body.status).to.equal(200);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      get successful\");\n});\ntest(\"data object exists\", function() {\n  expect(res.body.data).to.exist;\n\
+      });\ntest(\"data has totalReservations\", function() {\n  expect(res.body.data).to.have.property(\"\
+      totalReservations\");\n});\ntest(\"data has monthlyReservations\", function()\
+      \ {\n  expect(res.body.data).to.have.property(\"monthlyReservations\");\n});\n\
+      test(\"data has cancellationRate\", function() {\n  expect(res.body.data).to.have.property(\"\
+      cancellationRate\");\n});\ntest(\"data.weeklyBarGraph is array\", function()\
+      \ {\n  expect(Array.isArray(res.body.data.weeklyBarGraph)).to.equal(true);\n\
+      });"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

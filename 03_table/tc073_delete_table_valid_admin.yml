@@ -1,0 +1,26 @@
+info:
+  name: TC073 - Delete Table - Valid Admin
+  type: http
+  seq: 19
+  tags:
+  - table
+  - tc073
+http:
+  method: DELETE
+  url: '{{baseUrl}}/table/{{deleteTableId}}'
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 204\", function() {\n  expect(res.status).to.equal(204);\n\
+      });\ntest(\"body status is 204\", function() {\n  expect(res.body.status).to.equal(204);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      delete table successful\");\n});\ntest(\"tableId exists\", function() {\n  expect(res.body.tableId).to.exist;\n\
+      });"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,29 @@
+info:
+  name: TC068 - Update Table - Invalid Staff Change Other Fields
+  type: http
+  seq: 14
+  tags:
+  - table
+  - tc068
+http:
+  method: PUT
+  url: '{{baseUrl}}/table/{{manageTableId}}'
+  body:
+    type: json
+    data: "{\n  \"tableId\": \"{{manageTableId}}\",\n  \"TableCode\": \"T-99\",\n\
+      \  \"Capacity\": 6,\n  \"status\": \"Occupied\"\n}"
+  auth:
+    type: bearer
+    token: '{{staffToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      staff can change only status\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

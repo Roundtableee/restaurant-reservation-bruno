@@ -1,0 +1,36 @@
+info:
+  name: TC085 - Update Restaurant Operating Hours - Future Reservations Outside New
+    Range Are Cancelled
+  type: http
+  seq: 9
+  tags:
+  - restaurant
+  - tc085
+http:
+  method: PUT
+  url: '{{baseUrl}}/restaurant'
+  body:
+    type: json
+    data: "{\n  \"name\": \"restaurant\",\n  \"phone\": \"{{restaurantPhone}}\",\n\
+      \  \"email\": \"{{restaurantEmail}}\",\n  \"operatingTimeStart\": \"10:00\"\
+      ,\n  \"operatingTimeEnd\": \"{{updateTimeslot}}\",\n  \"address\": \"{{restaurantAddress}}\"\
+      \n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      update restaurant info successful\");\n});\ntest(\"note\", function() {\n  bru.setVar(\"\
+      lastTestNote\", \"valid  Post-condition: - future confirmed and walk-in reservations\
+      \ completely outside the new operating hours are updated to \\\"Cancelled\\\"\
+      \ - affected customer/staff accounts are notified\");\n  expect(true).to.equal(true);\n\
+      });"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

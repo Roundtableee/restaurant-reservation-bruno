@@ -1,0 +1,30 @@
+info:
+  name: TC031 - Create Reservation - Invalid Logic
+  type: http
+  seq: 12
+  tags:
+  - reservation
+  - tc031
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{pastDate}}\",\n  \"Timeslot\": \"{{futureTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 11,\n  \"SpecialRequest\": \"Window seat\",\n  \"TableId\"\
+      : \"{{smallTableId}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      invalid logic\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,31 @@
+info:
+  name: TC041 - Create Reservation - Walk-In Invalid Phone Characters
+  type: http
+  seq: 22
+  tags:
+  - reservation
+  - tc041
+http:
+  method: POST
+  url: '{{baseUrl}}/reservation'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{walkInDate}}\",\n  \"Timeslot\": \"{{walkInMainTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 4,\n  \"SpecialRequest\": \"Near counter\",\n  \"TableId\"\
+      : \"{{walkInTableId}}\",\n  \"CustomerName\": \"Walk In Customer\",\n  \"Phone\"\
+      : \"09988A7777\"\n}"
+  auth:
+    type: bearer
+    token: '{{staffToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      phone can only contain numbers\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

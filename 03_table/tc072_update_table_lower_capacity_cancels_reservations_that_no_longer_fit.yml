@@ -1,0 +1,36 @@
+info:
+  name: TC072 - Update Table - Lower Capacity Cancels Reservations That No Longer
+    Fit
+  type: http
+  seq: 18
+  tags:
+  - table
+  - tc072
+http:
+  method: PUT
+  url: '{{baseUrl}}/table/{{lowerTableId}}'
+  body:
+    type: json
+    data: "{\n  \"tableId\": \"{{lowerTableId}}\",\n  \"TableCode\": \"{{lowerTableCode}}\"\
+      ,\n  \"Capacity\": 2,\n  \"status\": \"Available\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 201\", function() {\n  expect(res.status).to.equal(201);\n\
+      });\ntest(\"body status is 201\", function() {\n  expect(res.body.status).to.equal(201);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      update table successful\");\n});\ntest(\"tableId exists\", function() {\n  expect(res.body.tableId).to.exist;\n\
+      });\ntest(\"capacity matches\", function() {\n  expect(res.body.capacity).to.equal(2);\n\
+      });\ntest(\"tableStatus matches\", function() {\n  expect(res.body.tableStatus).to.equal(\"\
+      Available\");\n});\ntest(\"note\", function() {\n  bru.setVar(\"lastTestNote\"\
+      , \"valid  Post-condition: - reservations whose number of guests exceed the\
+      \ new capacity are updated to \\\"Cancelled\\\" - affected customer/staff accounts\
+      \ are notified\");\n  expect(true).to.equal(true);\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

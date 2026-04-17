@@ -1,0 +1,28 @@
+info:
+  name: TC064 - Create Table - Invalid Table Code Length
+  type: http
+  seq: 10
+  tags:
+  - table
+  - tc064
+http:
+  method: POST
+  url: '{{baseUrl}}/table'
+  body:
+    type: json
+    data: "{\n  \"TableCode\": \"\",\n  \"Capacity\": 5\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      table code length must be between 1 to 20\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,30 @@
+info:
+  name: TC045 - Update Reservation - Invalid Customer Same Day
+  type: http
+  seq: 26
+  tags:
+  - reservation
+  - tc045
+http:
+  method: PUT
+  url: '{{baseUrl}}/reservation/{{customerReservationId}}'
+  body:
+    type: json
+    data: "{\n  \"Date\": \"{{todayDate}}\",\n  \"Timeslot\": \"{{updateTimeslot}}\"\
+      ,\n  \"NumberOfGuests\": 5,\n  \"SpecialRequest\": \"Birthday setup\",\n  \"\
+      TableId\": \"{{largeTableId}}\"\n}"
+  auth:
+    type: bearer
+    token: '{{customerToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 403\", function() {\n  expect(res.status).to.equal(403);\n\
+      });\ntest(\"body status is 403\", function() {\n  expect(res.body.status).to.equal(403);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      customer cannot update within the day\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

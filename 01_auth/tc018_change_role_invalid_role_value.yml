@@ -1,0 +1,28 @@
+info:
+  name: TC018 - Change Role - Invalid Role Value
+  type: http
+  seq: 18
+  tags:
+  - auth
+  - tc018
+http:
+  method: POST
+  url: '{{baseUrl}}/auth/role'
+  body:
+    type: json
+    data: "{\n  \"email\": \"{{staffCandidateEmail}}\",\n  \"role\": \"admin\"\n}"
+  auth:
+    type: bearer
+    token: '{{adminToken}}'
+runtime:
+  scripts:
+  - type: tests
+    code: "test(\"HTTP status is 422\", function() {\n  expect(res.status).to.equal(422);\n\
+      });\ntest(\"body status is 422\", function() {\n  expect(res.body.status).to.equal(422);\n\
+      });\ntest(\"message matches\", function() {\n  expect(res.body.message).to.equal(\"\
+      role must be either customer or staff\");\n});"
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
