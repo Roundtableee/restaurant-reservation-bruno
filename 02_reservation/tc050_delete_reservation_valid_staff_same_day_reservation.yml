@@ -1,10 +1,10 @@
 info:
-  name: TC051 - Delete Reservation - Valid Staff Same-Day Reservation
+  name: TC050 - Delete Reservation - Valid Staff Same-Day Reservation
   type: http
   seq: 32
   tags:
   - reservation
-  - tc051
+  - tc050
 http:
   method: DELETE
   url: '{{baseUrl}}/reservation/{{walkInDeleteReservationId}}'

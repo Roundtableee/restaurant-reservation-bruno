@@ -1,10 +1,10 @@
 info:
-  name: TC009 - Register - Invalid Email Format
+  name: TC008 - Register - Invalid Email Format
   type: http
   seq: 9
   tags:
   - auth
-  - tc009
+  - tc008
 http:
   method: POST
   url: '{{baseUrl}}/auth/register'

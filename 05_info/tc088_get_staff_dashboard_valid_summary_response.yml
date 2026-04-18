@@ -1,10 +1,10 @@
 info:
-  name: TC089 - Get Staff Dashboard - Valid Summary Response
+  name: TC088 - Get Staff Dashboard - Valid Summary Response
   type: http
   seq: 3
   tags:
   - info
-  - tc089
+  - tc088
 http:
   method: GET
   url: '{{baseUrl}}/staff/dashboard'

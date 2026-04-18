@@ -1,10 +1,10 @@
 info:
-  name: TC032 - Create Reservation - Invalid Date Missing
+  name: TC031 - Create Reservation - Invalid Date Missing
   type: http
   seq: 13
   tags:
   - reservation
-  - tc032
+  - tc031
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

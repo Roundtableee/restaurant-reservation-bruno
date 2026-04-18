@@ -1,10 +1,10 @@
 info:
-  name: TC071 - Update Table - Out Of Service Cancels Affected Reservations
+  name: TC070 - Update Table - Out Of Service Cancels Affected Reservations
   type: http
   seq: 17
   tags:
   - table
-  - tc071
+  - tc070
 http:
   method: PUT
   url: '{{baseUrl}}/table/{{oosTableId}}'

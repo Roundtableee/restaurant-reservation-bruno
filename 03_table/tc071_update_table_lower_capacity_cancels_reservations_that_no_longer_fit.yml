@@ -1,11 +1,11 @@
 info:
-  name: TC072 - Update Table - Lower Capacity Cancels Reservations That No Longer
+  name: TC071 - Update Table - Lower Capacity Cancels Reservations That No Longer
     Fit
   type: http
   seq: 18
   tags:
   - table
-  - tc072
+  - tc071
 http:
   method: PUT
   url: '{{baseUrl}}/table/{{lowerTableId}}'

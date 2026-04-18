@@ -1,10 +1,10 @@
 info:
-  name: TC059 - Create Table - Invalid Forbidden Customer/Staff
+  name: TC058 - Create Table - Invalid Forbidden Customer/Staff
   type: http
   seq: 5
   tags:
   - table
-  - tc059
+  - tc058
 http:
   method: POST
   url: '{{baseUrl}}/table'

@@ -1,11 +1,11 @@
 info:
-  name: TC086 - Update Restaurant Operating Hours - Partially Overlapping Reservations
+  name: TC085 - Update Restaurant Operating Hours - Partially Overlapping Reservations
     Are Adjusted
   type: http
   seq: 10
   tags:
   - restaurant
-  - tc086
+  - tc085
 http:
   method: PUT
   url: '{{baseUrl}}/restaurant'

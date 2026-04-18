@@ -1,10 +1,10 @@
 info:
-  name: TC046 - Update Reservation - Invalid Staff Future Date
+  name: TC045 - Update Reservation - Invalid Staff Future Date
   type: http
   seq: 27
   tags:
   - reservation
-  - tc046
+  - tc045
 http:
   method: PUT
   url: '{{baseUrl}}/reservation/{{walkInReservationId}}'

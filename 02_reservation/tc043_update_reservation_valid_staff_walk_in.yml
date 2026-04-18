@@ -1,10 +1,10 @@
 info:
-  name: TC044 - Update Reservation - Valid Staff Walk-In
+  name: TC043 - Update Reservation - Valid Staff Walk-In
   type: http
   seq: 25
   tags:
   - reservation
-  - tc044
+  - tc043
 http:
   method: PUT
   url: '{{baseUrl}}/reservation/{{walkInReservationId}}'

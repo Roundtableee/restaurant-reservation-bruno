@@ -1,10 +1,10 @@
 info:
-  name: TC066 - Update Table - Valid Staff Status Only
+  name: TC065 - Update Table - Valid Staff Status Only
   type: http
   seq: 12
   tags:
   - table
-  - tc066
+  - tc065
 http:
   method: PUT
   url: '{{baseUrl}}/table/{{manageTableId}}'

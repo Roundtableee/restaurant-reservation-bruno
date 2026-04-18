@@ -1,10 +1,10 @@
 info:
-  name: TC005 - Register - Invalid Phone Characters
+  name: TC004 - Register - Invalid Phone Characters
   type: http
   seq: 5
   tags:
   - auth
-  - tc005
+  - tc004
 http:
   method: POST
   url: '{{baseUrl}}/auth/register'

@@ -1,10 +1,10 @@
 info:
-  name: TC020 - Get My Reservations - Valid Customer
+  name: TC019 - Get My Reservations - Valid Customer
   type: http
   seq: 1
   tags:
   - reservation
-  - tc020
+  - tc019
 http:
   method: GET
   url: '{{baseUrl}}/reservations/my'

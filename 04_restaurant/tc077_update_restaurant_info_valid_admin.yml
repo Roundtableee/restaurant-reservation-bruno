@@ -1,10 +1,10 @@
 info:
-  name: TC078 - Update Restaurant Info - Valid Admin
+  name: TC077 - Update Restaurant Info - Valid Admin
   type: http
   seq: 2
   tags:
   - restaurant
-  - tc078
+  - tc077
 http:
   method: PUT
   url: '{{baseUrl}}/restaurant'

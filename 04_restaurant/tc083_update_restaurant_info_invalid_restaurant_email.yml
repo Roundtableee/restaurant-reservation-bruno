@@ -1,10 +1,10 @@
 info:
-  name: TC084 - Update Restaurant Info - Invalid Restaurant Email
+  name: TC083 - Update Restaurant Info - Invalid Restaurant Email
   type: http
   seq: 8
   tags:
   - restaurant
-  - tc084
+  - tc083
 http:
   method: PUT
   url: '{{baseUrl}}/restaurant'

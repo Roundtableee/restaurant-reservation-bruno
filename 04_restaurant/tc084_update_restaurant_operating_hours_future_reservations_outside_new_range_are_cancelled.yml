@@ -1,11 +1,11 @@
 info:
-  name: TC085 - Update Restaurant Operating Hours - Future Reservations Outside New
+  name: TC084 - Update Restaurant Operating Hours - Future Reservations Outside New
     Range Are Cancelled
   type: http
   seq: 9
   tags:
   - restaurant
-  - tc085
+  - tc084
 http:
   method: PUT
   url: '{{baseUrl}}/restaurant'

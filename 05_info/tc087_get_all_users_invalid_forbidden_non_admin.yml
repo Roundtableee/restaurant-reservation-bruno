@@ -1,10 +1,10 @@
 info:
-  name: TC088 - Get All Users - Invalid Forbidden Non-Admin
+  name: TC087 - Get All Users - Invalid Forbidden Non-Admin
   type: http
   seq: 2
   tags:
   - info
-  - tc088
+  - tc087
 http:
   method: GET
   url: '{{baseUrl}}/users'

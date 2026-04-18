@@ -1,10 +1,10 @@
 info:
-  name: TC026 - Create Reservation - Valid Customer Future Date
+  name: TC025 - Create Reservation - Valid Customer Future Date
   type: http
   seq: 7
   tags:
   - reservation
-  - tc026
+  - tc025
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

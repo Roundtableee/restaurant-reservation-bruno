@@ -1,10 +1,10 @@
 info:
-  name: TC073 - Delete Table - Valid Admin
+  name: TC072 - Delete Table - Valid Admin
   type: http
   seq: 19
   tags:
   - table
-  - tc073
+  - tc072
 http:
   method: DELETE
   url: '{{baseUrl}}/table/{{deleteTableId}}'

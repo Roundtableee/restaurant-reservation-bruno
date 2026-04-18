@@ -1,10 +1,10 @@
 info:
-  name: TC061 - Create Table - Invalid Logic
+  name: TC060 - Create Table - Invalid Logic
   type: http
   seq: 7
   tags:
   - table
-  - tc061
+  - tc060
 http:
   method: POST
   url: '{{baseUrl}}/table'

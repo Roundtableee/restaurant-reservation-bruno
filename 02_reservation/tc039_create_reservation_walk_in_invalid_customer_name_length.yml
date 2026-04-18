@@ -1,10 +1,10 @@
 info:
-  name: TC040 - Create Reservation - Walk-In Invalid Customer Name Length
+  name: TC039 - Create Reservation - Walk-In Invalid Customer Name Length
   type: http
   seq: 21
   tags:
   - reservation
-  - tc040
+  - tc039
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

@@ -1,10 +1,10 @@
 info:
-  name: TC060 - Create Table - Invalid TableCode Conflict
+  name: TC059 - Create Table - Invalid TableCode Conflict
   type: http
   seq: 6
   tags:
   - table
-  - tc060
+  - tc059
 http:
   method: POST
   url: '{{baseUrl}}/table'

@@ -1,10 +1,10 @@
 info:
-  name: TC063 - Create Table - Invalid Capacity Non-Numeric
+  name: TC062 - Create Table - Invalid Capacity Non-Numeric
   type: http
   seq: 9
   tags:
   - table
-  - tc063
+  - tc062
 http:
   method: POST
   url: '{{baseUrl}}/table'

@@ -1,10 +1,10 @@
 info:
-  name: TC028 - Create Reservation - Invalid Customer Reserve Same Day
+  name: TC027 - Create Reservation - Invalid Customer Reserve Same Day
   type: http
   seq: 9
   tags:
   - reservation
-  - tc028
+  - tc027
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

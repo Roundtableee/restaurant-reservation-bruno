@@ -1,10 +1,10 @@
 info:
-  name: TC081 - Update Restaurant Info - Invalid Restaurant Name Length
+  name: TC080 - Update Restaurant Info - Invalid Restaurant Name Length
   type: http
   seq: 5
   tags:
   - restaurant
-  - tc081
+  - tc080
 http:
   method: PUT
   url: '{{baseUrl}}/restaurant'

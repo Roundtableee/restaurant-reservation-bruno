@@ -1,10 +1,10 @@
 info:
-  name: TC036 - Create Reservation - Invalid Table Capacity Too Small
+  name: TC035 - Create Reservation - Invalid Table Capacity Too Small
   type: http
   seq: 17
   tags:
   - reservation
-  - tc036
+  - tc035
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

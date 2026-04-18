@@ -1,10 +1,10 @@
 info:
-  name: TC011 - Login - Valid Admin
+  name: TC010 - Login - Valid Admin
   type: http
   seq: 11
   tags:
   - auth
-  - tc011
+  - tc010
 http:
   method: POST
   url: '{{baseUrl}}/auth/login'

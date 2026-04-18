@@ -1,10 +1,10 @@
 info:
-  name: TC004 - Register - Invalid Full Name Characters
+  name: TC003 - Register - Invalid Full Name Characters
   type: http
   seq: 4
   tags:
   - auth
-  - tc004
+  - tc003
 http:
   method: POST
   url: '{{baseUrl}}/auth/register'

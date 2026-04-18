@@ -1,10 +1,10 @@
 info:
-  name: TC052 - Delete Reservation - Invalid Customer Delete Not Own
+  name: TC051 - Delete Reservation - Invalid Customer Delete Not Own
   type: http
   seq: 33
   tags:
   - reservation
-  - tc052
+  - tc051
 http:
   method: DELETE
   url: '{{baseUrl}}/reservation/{{walkInDeleteReservationId}}'

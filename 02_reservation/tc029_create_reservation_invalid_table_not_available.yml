@@ -1,10 +1,10 @@
 info:
-  name: TC030 - Create Reservation - Invalid Table Not Available
+  name: TC029 - Create Reservation - Invalid Table Not Available
   type: http
   seq: 11
   tags:
   - reservation
-  - tc030
+  - tc029
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

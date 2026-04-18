@@ -1,10 +1,10 @@
 info:
-  name: TC037 - Create Reservation - Invalid Special Request Length
+  name: TC036 - Create Reservation - Invalid Special Request Length
   type: http
   seq: 18
   tags:
   - reservation
-  - tc037
+  - tc036
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

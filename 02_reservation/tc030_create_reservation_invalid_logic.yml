@@ -1,10 +1,10 @@
 info:
-  name: TC031 - Create Reservation - Invalid Logic
+  name: TC030 - Create Reservation - Invalid Logic
   type: http
   seq: 12
   tags:
   - reservation
-  - tc031
+  - tc030
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

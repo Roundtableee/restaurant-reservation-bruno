@@ -1,10 +1,10 @@
 info:
-  name: TC041 - Create Reservation - Walk-In Invalid Phone Characters
+  name: TC040 - Create Reservation - Walk-In Invalid Phone Characters
   type: http
   seq: 22
   tags:
   - reservation
-  - tc041
+  - tc040
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

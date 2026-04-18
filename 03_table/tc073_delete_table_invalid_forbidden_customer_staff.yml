@@ -1,10 +1,10 @@
 info:
-  name: TC074 - Delete Table - Invalid Forbidden Customer/Staff
+  name: TC073 - Delete Table - Invalid Forbidden Customer/Staff
   type: http
   seq: 20
   tags:
   - table
-  - tc074
+  - tc073
 http:
   method: DELETE
   url: '{{baseUrl}}/table/{{deleteTableId}}'

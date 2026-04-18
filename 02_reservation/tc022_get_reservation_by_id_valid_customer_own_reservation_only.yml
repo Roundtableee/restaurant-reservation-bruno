@@ -1,10 +1,10 @@
 info:
-  name: TC023 - Get Reservation By ID - Valid Customer Own Reservation Only
+  name: TC022 - Get Reservation By ID - Valid Customer Own Reservation Only
   type: http
   seq: 4
   tags:
   - reservation
-  - tc023
+  - tc022
 http:
   method: GET
   url: '{{baseUrl}}/reservation/{{customerReservationId}}'

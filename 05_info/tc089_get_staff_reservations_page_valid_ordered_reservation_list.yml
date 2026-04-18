@@ -1,10 +1,10 @@
 info:
-  name: TC090 - Get Staff Reservations Page - Valid Ordered Reservation List
+  name: TC089 - Get Staff Reservations Page - Valid Ordered Reservation List
   type: http
   seq: 4
   tags:
   - info
-  - tc090
+  - tc089
 http:
   method: GET
   url: '{{baseUrl}}/staff/reservations'

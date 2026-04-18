@@ -1,10 +1,10 @@
 info:
-  name: TC010 - Login - Valid Customer
+  name: TC009 - Login - Valid Customer
   type: http
   seq: 10
   tags:
   - auth
-  - tc010
+  - tc009
 http:
   method: POST
   url: '{{baseUrl}}/auth/login'

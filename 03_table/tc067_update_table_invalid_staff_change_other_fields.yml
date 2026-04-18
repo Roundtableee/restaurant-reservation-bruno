@@ -1,10 +1,10 @@
 info:
-  name: TC068 - Update Table - Invalid Staff Change Other Fields
+  name: TC067 - Update Table - Invalid Staff Change Other Fields
   type: http
   seq: 14
   tags:
   - table
-  - tc068
+  - tc067
 http:
   method: PUT
   url: '{{baseUrl}}/table/{{manageTableId}}'

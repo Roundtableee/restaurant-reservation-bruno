@@ -1,10 +1,10 @@
 info:
-  name: TC038 - Create Reservation - Invalid Special Request Characters
+  name: TC037 - Create Reservation - Invalid Special Request Characters
   type: http
   seq: 19
   tags:
   - reservation
-  - tc038
+  - tc037
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

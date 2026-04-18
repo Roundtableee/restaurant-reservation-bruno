@@ -1,10 +1,10 @@
 info:
-  name: TC049 - Update Reservation - Invalid Logic (Guest/Date/1 Hour Rule)
+  name: TC048 - Update Reservation - Invalid Logic (Guest/Date/1 Hour Rule)
   type: http
   seq: 30
   tags:
   - reservation
-  - tc049
+  - tc048
 http:
   method: PUT
   url: '{{baseUrl}}/reservation/{{lateRuleReservationId}}'

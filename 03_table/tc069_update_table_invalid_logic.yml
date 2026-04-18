@@ -1,10 +1,10 @@
 info:
-  name: TC070 - Update Table - Invalid Logic
+  name: TC069 - Update Table - Invalid Logic
   type: http
   seq: 16
   tags:
   - table
-  - tc070
+  - tc069
 http:
   method: PUT
   url: '{{baseUrl}}/table/{{manageTableId}}'

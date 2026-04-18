@@ -1,10 +1,10 @@
 info:
-  name: TC018 - Change Role - Invalid Role Value
+  name: TC017 - Change Role - Invalid Role Value
   type: http
   seq: 18
   tags:
   - auth
-  - tc018
+  - tc017
 http:
   method: POST
   url: '{{baseUrl}}/auth/role'

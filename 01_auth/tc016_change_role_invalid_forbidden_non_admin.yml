@@ -1,10 +1,10 @@
 info:
-  name: TC017 - Change Role - Invalid Forbidden Non-Admin
+  name: TC016 - Change Role - Invalid Forbidden Non-Admin
   type: http
   seq: 17
   tags:
   - auth
-  - tc017
+  - tc016
 http:
   method: POST
   url: '{{baseUrl}}/auth/role'

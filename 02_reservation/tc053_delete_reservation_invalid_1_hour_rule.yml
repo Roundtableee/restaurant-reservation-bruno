@@ -1,10 +1,10 @@
 info:
-  name: TC054 - Delete Reservation - Invalid 1 Hour Rule
+  name: TC053 - Delete Reservation - Invalid 1 Hour Rule
   type: http
   seq: 35
   tags:
   - reservation
-  - tc054
+  - tc053
 http:
   method: DELETE
   url: '{{baseUrl}}/reservation/{{lateRuleReservationId}}'

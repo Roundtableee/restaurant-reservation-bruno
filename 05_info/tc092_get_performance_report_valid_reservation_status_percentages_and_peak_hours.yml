@@ -1,11 +1,11 @@
 info:
-  name: TC093 - Get Performance Report - Valid Reservation Status Percentages And
+  name: TC092 - Get Performance Report - Valid Reservation Status Percentages And
     Peak Hours
   type: http
   seq: 7
   tags:
   - info
-  - tc093
+  - tc092
 http:
   method: GET
   url: '{{baseUrl}}/reports/performance'

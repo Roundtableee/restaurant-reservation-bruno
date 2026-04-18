@@ -1,10 +1,10 @@
 info:
-  name: TC075 - Delete Table - Invalid Table Not Found
+  name: TC074 - Delete Table - Invalid Table Not Found
   type: http
   seq: 21
   tags:
   - table
-  - tc075
+  - tc074
 http:
   method: DELETE
   url: '{{baseUrl}}/table/{{fakeTableId}}'

@@ -1,10 +1,10 @@
 info:
-  name: TC067 - Update Table - Valid Admin Any Fields
+  name: TC066 - Update Table - Valid Admin Any Fields
   type: http
   seq: 13
   tags:
   - table
-  - tc067
+  - tc066
 http:
   method: PUT
   url: '{{baseUrl}}/table/{{manageTableId}}'

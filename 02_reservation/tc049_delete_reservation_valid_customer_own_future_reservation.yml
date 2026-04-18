@@ -1,10 +1,10 @@
 info:
-  name: TC050 - Delete Reservation - Valid Customer Own Future Reservation
+  name: TC049 - Delete Reservation - Valid Customer Own Future Reservation
   type: http
   seq: 31
   tags:
   - reservation
-  - tc050
+  - tc049
 http:
   method: DELETE
   url: '{{baseUrl}}/reservation/{{deletableCustomerReservationId}}'

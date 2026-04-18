@@ -1,10 +1,10 @@
 info:
-  name: TC027 - Create Reservation - Valid Staff Walk-In
+  name: TC026 - Create Reservation - Valid Staff Walk-In
   type: http
   seq: 8
   tags:
   - reservation
-  - tc027
+  - tc026
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

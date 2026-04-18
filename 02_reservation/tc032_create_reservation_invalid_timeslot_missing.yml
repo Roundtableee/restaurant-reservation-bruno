@@ -1,10 +1,10 @@
 info:
-  name: TC033 - Create Reservation - Invalid Timeslot Missing
+  name: TC032 - Create Reservation - Invalid Timeslot Missing
   type: http
   seq: 14
   tags:
   - reservation
-  - tc033
+  - tc032
 http:
   method: POST
   url: '{{baseUrl}}/reservation'

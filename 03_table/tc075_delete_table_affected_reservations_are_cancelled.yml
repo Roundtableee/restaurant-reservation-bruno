@@ -1,10 +1,10 @@
 info:
-  name: TC076 - Delete Table - Affected Reservations Are Cancelled
+  name: TC075 - Delete Table - Affected Reservations Are Cancelled
   type: http
   seq: 22
   tags:
   - table
-  - tc076
+  - tc075
 http:
   method: DELETE
   url: '{{baseUrl}}/table/{{cascadeDeleteTableId}}'

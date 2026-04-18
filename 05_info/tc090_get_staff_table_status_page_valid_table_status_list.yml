@@ -1,10 +1,10 @@
 info:
-  name: TC091 - Get Staff Table Status Page - Valid Table Status List
+  name: TC090 - Get Staff Table Status Page - Valid Table Status List
   type: http
   seq: 5
   tags:
   - info
-  - tc091
+  - tc090
 http:
   method: GET
   url: '{{baseUrl}}/staff/tables'

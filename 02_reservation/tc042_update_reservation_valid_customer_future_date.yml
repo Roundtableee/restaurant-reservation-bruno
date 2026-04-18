@@ -1,10 +1,10 @@
 info:
-  name: TC043 - Update Reservation - Valid Customer Future Date
+  name: TC042 - Update Reservation - Valid Customer Future Date
   type: http
   seq: 24
   tags:
   - reservation
-  - tc043
+  - tc042
 http:
   method: PUT
   url: '{{baseUrl}}/reservation/{{customerReservationId}}'

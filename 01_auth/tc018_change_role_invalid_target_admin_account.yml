@@ -1,10 +1,10 @@
 info:
-  name: TC019 - Change Role - Invalid Target Admin Account
+  name: TC018 - Change Role - Invalid Target Admin Account
   type: http
   seq: 19
   tags:
   - auth
-  - tc019
+  - tc018
 http:
   method: POST
   url: '{{baseUrl}}/auth/role'

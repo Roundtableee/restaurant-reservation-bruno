@@ -1,10 +1,10 @@
 info:
-  name: TC045 - Update Reservation - Invalid Customer Same Day
+  name: TC044 - Update Reservation - Invalid Customer Same Day
   type: http
   seq: 26
   tags:
   - reservation
-  - tc045
+  - tc044
 http:
   method: PUT
   url: '{{baseUrl}}/reservation/{{customerReservationId}}'

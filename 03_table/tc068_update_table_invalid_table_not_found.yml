@@ -1,10 +1,10 @@
 info:
-  name: TC069 - Update Table - Invalid Table Not Found
+  name: TC068 - Update Table - Invalid Table Not Found
   type: http
   seq: 15
   tags:
   - table
-  - tc069
+  - tc068
 http:
   method: PUT
   url: '{{baseUrl}}/table/{{fakeTableId}}'

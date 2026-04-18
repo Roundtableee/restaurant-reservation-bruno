@@ -1,10 +1,10 @@
 info:
-  name: TC062 - Create Table - Invalid Missing Capacity
+  name: TC061 - Create Table - Invalid Missing Capacity
   type: http
   seq: 8
   tags:
   - table
-  - tc062
+  - tc061
 http:
   method: POST
   url: '{{baseUrl}}/table'

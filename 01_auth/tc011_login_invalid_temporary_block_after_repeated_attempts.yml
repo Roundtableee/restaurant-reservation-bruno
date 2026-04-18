@@ -1,10 +1,10 @@
 info:
-  name: TC012 - Login - Invalid Temporary Block After Repeated Attempts
+  name: TC011 - Login - Invalid Temporary Block After Repeated Attempts
   type: http
   seq: 12
   tags:
   - auth
-  - tc012
+  - tc011
 http:
   method: POST
   url: '{{baseUrl}}/auth/login'

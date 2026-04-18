@@ -1,10 +1,10 @@
 info:
-  name: TC058 - Create Table - Valid Admin
+  name: TC057 - Create Table - Valid Admin
   type: http
   seq: 4
   tags:
   - table
-  - tc058
+  - tc057
 http:
   method: POST
   url: '{{baseUrl}}/table'

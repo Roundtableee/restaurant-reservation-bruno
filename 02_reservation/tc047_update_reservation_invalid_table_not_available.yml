@@ -1,10 +1,10 @@
 info:
-  name: TC048 - Update Reservation - Invalid Table Not Available
+  name: TC047 - Update Reservation - Invalid Table Not Available
   type: http
   seq: 29
   tags:
   - reservation
-  - tc048
+  - tc047
 http:
   method: PUT
   url: '{{baseUrl}}/reservation/{{customerReservationId}}'

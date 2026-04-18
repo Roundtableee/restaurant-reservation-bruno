@@ -1,10 +1,10 @@
 info:
-  name: TC003 - Register - Invalid Missing Fields
+  name: TC002 - Register - Invalid Missing Fields
   type: http
   seq: 3
   tags:
   - auth
-  - tc003
+  - tc002
 http:
   method: POST
   url: '{{baseUrl}}/auth/register'

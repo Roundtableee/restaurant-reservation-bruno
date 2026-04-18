@@ -1,10 +1,10 @@
 info:
-  name: TC064 - Create Table - Invalid Table Code Length
+  name: TC063 - Create Table - Invalid Table Code Length
   type: http
   seq: 10
   tags:
   - table
-  - tc064
+  - tc063
 http:
   method: POST
   url: '{{baseUrl}}/table'
